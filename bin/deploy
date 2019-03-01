@@ -1,0 +1,11 @@
+#!/bin/bash
+
+gcloud alpha run deploy weather-api \
+  --concurrency 50 \
+  --image gcr.io/hightowerlabs/weather-api:0.1.0 \
+  --memory 2G \
+  --region us-central1  
+
+gcloud alpha run services add-iam-policy-binding weather-api \
+  --member="allUsers" \
+  --role="roles/run.invoker"
